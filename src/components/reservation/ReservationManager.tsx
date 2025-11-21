@@ -193,7 +193,8 @@ export default function ReservationManager({
             {reservations.length === 0 && (
               <tr>
                 <td colSpan={5} className="px-4 py-8 text-center text-gray-500">
-                  No reservations found. Click &quot;Add Reservation&quot; to create one.
+                  No reservations found. Click &quot;Add Reservation&quot; to
+                  create one.
                 </td>
               </tr>
             )}

@@ -2,11 +2,22 @@
 
 import Link from "next/link";
 import { useState, useActionState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createRoomAction, updateRoomAction, deleteRoomAction } from "@/application/actions/room";
+import {
+  createRoomAction,
+  updateRoomAction,
+  deleteRoomAction,
+} from "@/application/actions/room";
 
 type Room = {
   id: string;
@@ -38,15 +49,26 @@ const initialState: ActionState = {
   success: undefined,
 };
 
-export default function RoomManager({ rooms, floors, selectedFloorId, userRole }: Props) {
+export default function RoomManager({
+  rooms,
+  floors,
+  selectedFloorId,
+  userRole,
+}: Props) {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [roomToDelete, setRoomToDelete] = useState<Room | null>(null);
 
-  const [createState, createFormAction, isCreating] = useActionState(createRoomAction, initialState);
-  const [updateState, updateFormAction, isUpdating] = useActionState(updateRoomAction, initialState);
+  const [createState, createFormAction, isCreating] = useActionState(
+    createRoomAction,
+    initialState,
+  );
+  const [updateState, updateFormAction, isUpdating] = useActionState(
+    updateRoomAction,
+    initialState,
+  );
 
   const handleEdit = (room: Room) => {
     setSelectedRoom(room);
@@ -80,7 +102,9 @@ export default function RoomManager({ rooms, floors, selectedFloorId, userRole }
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold">Room Management</h2>
-        {isAdmin && <Button onClick={() => setIsCreateModalOpen(true)}>Add Room</Button>}
+        {isAdmin && (
+          <Button onClick={() => setIsCreateModalOpen(true)}>Add Room</Button>
+        )}
       </div>
 
       <div className="border rounded-lg overflow-hidden">
@@ -97,7 +121,10 @@ export default function RoomManager({ rooms, floors, selectedFloorId, userRole }
             {rooms.map((room) => (
               <tr key={room.id} className="border-t">
                 <td className="px-4 py-2">
-                  <Link href={`/buildings/${floors.find((f) => f.id === room.floorId)?.buildingId}/floors/${room.floorId}/rooms/${room.id}`} className="text-blue-600 hover:underline">
+                  <Link
+                    href={`/buildings/${floors.find((f) => f.id === room.floorId)?.buildingId}/floors/${room.floorId}/rooms/${room.id}`}
+                    className="text-blue-600 hover:underline"
+                  >
                     {room.name}
                   </Link>
                 </td>
@@ -105,10 +132,18 @@ export default function RoomManager({ rooms, floors, selectedFloorId, userRole }
                 <td className="px-4 py-2">{room.capacity ?? "-"}</td>
                 {isAdmin && (
                   <td className="px-4 py-2 text-right space-x-2">
-                    <Button variant="outline" size="sm" onClick={() => handleEdit(room)}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleEdit(room)}
+                    >
                       Edit
                     </Button>
-                    <Button variant="destructive" size="sm" onClick={() => handleDeleteClick(room)}>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => handleDeleteClick(room)}
+                    >
                       Delete
                     </Button>
                   </td>
@@ -142,11 +177,27 @@ export default function RoomManager({ rooms, floors, selectedFloorId, userRole }
                 <Label htmlFor="floorId">Floor</Label>
                 {selectedFloorId ? (
                   <>
-                    <input type="hidden" name="floorId" value={selectedFloorId} />
-                    <Input disabled value={floors.find((f) => f.id === selectedFloorId)?.name || "Unknown Floor"} />
+                    <input
+                      type="hidden"
+                      name="floorId"
+                      value={selectedFloorId}
+                    />
+                    <Input
+                      disabled
+                      value={
+                        floors.find((f) => f.id === selectedFloorId)?.name ||
+                        "Unknown Floor"
+                      }
+                    />
                   </>
                 ) : (
-                  <select id="floorId" name="floorId" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" defaultValue="" required>
+                  <select
+                    id="floorId"
+                    name="floorId"
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    defaultValue=""
+                    required
+                  >
                     <option value="">Select a floor</option>
                     {floors.map((floor) => (
                       <option key={floor.id} value={floor.id}>
@@ -160,7 +211,9 @@ export default function RoomManager({ rooms, floors, selectedFloorId, userRole }
                 <Label htmlFor="capacity">Capacity</Label>
                 <Input id="capacity" name="capacity" type="number" />
               </div>
-              {createState?.error && <div className="text-red-500 text-sm">{createState.error}</div>}
+              {createState?.error && (
+                <div className="text-red-500 text-sm">{createState.error}</div>
+              )}
             </div>
             <DialogFooter>
               <Button type="submit" disabled={isCreating}>
@@ -182,17 +235,38 @@ export default function RoomManager({ rooms, floors, selectedFloorId, userRole }
             <div className="grid gap-4 py-4">
               <div className="grid gap-2">
                 <Label htmlFor="edit-name">Name</Label>
-                <Input id="edit-name" name="name" defaultValue={selectedRoom?.name || ""} required />
+                <Input
+                  id="edit-name"
+                  name="name"
+                  defaultValue={selectedRoom?.name || ""}
+                  required
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="edit-floorId">Floor</Label>
                 {selectedFloorId ? (
                   <>
-                    <input type="hidden" name="floorId" value={selectedFloorId} />
-                    <Input disabled value={floors.find((f) => f.id === selectedFloorId)?.name || "Unknown Floor"} />
+                    <input
+                      type="hidden"
+                      name="floorId"
+                      value={selectedFloorId}
+                    />
+                    <Input
+                      disabled
+                      value={
+                        floors.find((f) => f.id === selectedFloorId)?.name ||
+                        "Unknown Floor"
+                      }
+                    />
                   </>
                 ) : (
-                  <select id="edit-floorId" name="floorId" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm" defaultValue={selectedRoom?.floorId || ""} required>
+                  <select
+                    id="edit-floorId"
+                    name="floorId"
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    defaultValue={selectedRoom?.floorId || ""}
+                    required
+                  >
                     {floors.map((floor) => (
                       <option key={floor.id} value={floor.id}>
                         {floor.name}
@@ -203,9 +277,16 @@ export default function RoomManager({ rooms, floors, selectedFloorId, userRole }
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="edit-capacity">Capacity</Label>
-                <Input id="edit-capacity" name="capacity" type="number" defaultValue={selectedRoom?.capacity?.toString() || ""} />
+                <Input
+                  id="edit-capacity"
+                  name="capacity"
+                  type="number"
+                  defaultValue={selectedRoom?.capacity?.toString() || ""}
+                />
               </div>
-              {updateState?.error && <div className="text-red-500 text-sm">{updateState.error}</div>}
+              {updateState?.error && (
+                <div className="text-red-500 text-sm">{updateState.error}</div>
+              )}
             </div>
             <DialogFooter>
               <Button type="submit" disabled={isUpdating}>
@@ -221,10 +302,16 @@ export default function RoomManager({ rooms, floors, selectedFloorId, userRole }
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Delete Room</DialogTitle>
-            <DialogDescription>Are you sure you want to delete &quot;{roomToDelete?.name}&quot;? This action cannot be undone.</DialogDescription>
+            <DialogDescription>
+              Are you sure you want to delete &quot;{roomToDelete?.name}&quot;?
+              This action cannot be undone.
+            </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsDeleteDialogOpen(false)}>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteDialogOpen(false)}
+            >
               Cancel
             </Button>
             <Button variant="destructive" onClick={handleDeleteConfirm}>

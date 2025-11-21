@@ -32,7 +32,9 @@ export default async function ReservationsPage() {
     getFavoritesAction(),
   ]);
 
-  const currentUser = currentUserResult.success ? (currentUserResult.data ?? null) : null;
+  const currentUser = currentUserResult.success
+    ? (currentUserResult.data ?? null)
+    : null;
   const favoriteEquipmentIds = favoritesResult.success
     ? favoritesResult.data
     : [];

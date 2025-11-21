@@ -40,23 +40,35 @@ const formats = {
   eventTimeRangeFormat: (
     { start, end }: { start: Date; end: Date },
     culture: string | undefined,
-    localizer: { format: (date: Date, format: string, culture?: string) => string },
-  ) =>
-    `${localizer.format(start, "HH:mm", culture)} - ${localizer.format(end, "HH:mm", culture)}`,
+    localizer?: {
+      format: (date: Date, format: string, culture?: string) => string;
+    },
+  ) => {
+    if (!localizer) return "";
+    return `${localizer.format(start, "HH:mm", culture)} - ${localizer.format(end, "HH:mm", culture)}`;
+  },
   agendaTimeRangeFormat: (
     { start, end }: { start: Date; end: Date },
     culture: string | undefined,
-    localizer: { format: (date: Date, format: string, culture?: string) => string },
-  ) =>
-    `${localizer.format(start, "HH:mm", culture)} - ${localizer.format(end, "HH:mm", culture)}`,
+    localizer?: {
+      format: (date: Date, format: string, culture?: string) => string;
+    },
+  ) => {
+    if (!localizer) return "";
+    return `${localizer.format(start, "HH:mm", culture)} - ${localizer.format(end, "HH:mm", culture)}`;
+  },
   dayHeaderFormat: "MMMM dd, yyyy",
   dayRangeHeaderFormat: (
     { start, end }: { start: Date; end: Date },
     culture: string | undefined,
-    localizer: { format: (date: Date, format: string, culture?: string) => string },
-  ) =>
-    `${localizer.format(start, "MMM dd", culture)} - ${localizer.format(end, "MMM dd", culture)}`,
-};
+    localizer?: {
+      format: (date: Date, format: string, culture?: string) => string;
+    },
+  ) => {
+    if (!localizer) return "";
+    return `${localizer.format(start, "MMM dd", culture)} - ${localizer.format(end, "MMM dd", culture)}`;
+  },
+} as const;
 
 const localizer = dateFnsLocalizer({
   format,
@@ -66,12 +78,23 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
+type EventResource = {
+  reservationId: string;
+  equipmentId: string;
+  equipmentName: string;
+  bookerName: string;
+  userId: string;
+  comment: string | null;
+  startTime: Date;
+  endTime: Date;
+};
+
 type Event = {
   title: string;
   start: Date;
   end: Date;
   allDay?: boolean;
-  resource?: unknown;
+  resource?: EventResource;
   style?: {
     backgroundColor: string;
     borderColor: string;
@@ -87,6 +110,15 @@ type Props = {
     startTime: Date;
     endTime: Date;
     title?: string | null;
+    comment?: string | null;
+    equipment?: {
+      id: string;
+      name: string;
+    };
+    booker?: {
+      id: string;
+      name: string | null;
+    };
   }>;
   equipments: Array<{
     id: string;
@@ -181,7 +213,7 @@ export default function EquipmentCalendar({
           equipmentName: r.equipment?.name || "Unknown Equipment",
           bookerName: r.booker?.name || "Unknown User",
           userId: r.userId,
-          comment: r.comment,
+          comment: r.comment || null,
           startTime: r.startTime, // Original UTC time
           endTime: r.endTime, // Original UTC time
         },
@@ -372,7 +404,7 @@ export default function EquipmentCalendar({
               {isEditMode ? "Edit Reservation" : "Reservation Details"}
             </DialogTitle>
           </DialogHeader>
-          {selectedEvent?.resource && (
+          {selectedEvent?.resource ? (
             <>
               {isEditMode ? (
                 <form action={updateFormAction}>
@@ -524,7 +556,7 @@ export default function EquipmentCalendar({
                 </>
               )}
             </>
-          )}
+          ) : null}
         </DialogContent>
       </Dialog>
     </div>

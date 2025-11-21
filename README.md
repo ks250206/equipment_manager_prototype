@@ -173,12 +173,14 @@ npm test
 ### データベース関連
 
 - **Podman が起動していない / ポート競合**
+
   ```bash
   npm run db:down
   npm run db:up
   ```
 
 - **スキーマ変更が反映されない**
+
   ```bash
   npm run db:push
   ```
@@ -204,9 +206,11 @@ npm test
 ### その他
 
 - **型エラーが出る**
+
   ```bash
   npm run check
   ```
+
   で詳細なエラーメッセージを確認
 
 - **Lint エラー**

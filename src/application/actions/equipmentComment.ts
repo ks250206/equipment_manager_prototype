@@ -67,10 +67,7 @@ export async function deleteEquipmentCommentAction(
   }
 
   // Only the comment author or admin can delete
-  if (
-    session.user.id !== commentUserId &&
-    session.user.role !== "ADMIN"
-  ) {
+  if (session.user.id !== commentUserId && session.user.role !== "ADMIN") {
     return { error: "You can only delete your own comments" };
   }
 

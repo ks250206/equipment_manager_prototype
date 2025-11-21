@@ -460,8 +460,8 @@ Infrastructure層でDrizzle ORMを使用した実装を提供：
 
 **実装済みリポジトリ：**
 
-| リポジトリ                           | ファイル                                                                                                                                                                                     | テスト |
-| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| リポジトリ                           | ファイル                                                                                                          | テスト |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------- | ------ |
 | `DrizzleBuildingRepository`          | [DrizzleBuildingRepository.ts](../src/infrastructure/repositories/DrizzleBuildingRepository.ts)                   | ✅     |
 | `DrizzleFloorRepository`             | [DrizzleFloorRepository.ts](../src/infrastructure/repositories/DrizzleFloorRepository.ts)                         | ✅     |
 | `DrizzleRoomRepository`              | [DrizzleRoomRepository.ts](../src/infrastructure/repositories/DrizzleRoomRepository.ts)                           | ✅     |
@@ -588,27 +588,27 @@ Next.js 16のServer Actionsを使用してアプリケーションロジック�
 
 #### 管理系コンポーネント
 
-| コンポーネント       | ファイル                                                                                                                                                  | 機能               |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| `BuildingManager`    | [BuildingManager.tsx](../src/components/building/BuildingManager.tsx)          | 建物のCRUD操作UI       |
-| `FloorManager`       | [FloorManager.tsx](../src/components/floor/FloorManager.tsx)                   | フロアのCRUD操作UI     |
-| `RoomManager`        | [RoomManager.tsx](../src/components/room/RoomManager.tsx)                      | 部屋のCRUD操作UI       |
-| `EquipmentManager`   | [EquipmentManager.tsx](../src/components/equipment/EquipmentManager.tsx)       | 設備のCRUD操作UI       |
-| `CategoryManager`    | [CategoryManager.tsx](../src/components/equipment/CategoryManager.tsx)          | カテゴリのCRUD操作UI   |
-| `ReservationManager` | [ReservationManager.tsx](../src/components/reservation/ReservationManager.tsx) | 予約のCRUD操作UI       |
-| `UserProfileManager` | [UserProfileManager.tsx](../src/components/user/UserProfileManager.tsx)        | プロフィール編集UI     |
+| コンポーネント       | ファイル                                                                       | 機能                       |
+| -------------------- | ------------------------------------------------------------------------------ | -------------------------- |
+| `BuildingManager`    | [BuildingManager.tsx](../src/components/building/BuildingManager.tsx)          | 建物のCRUD操作UI           |
+| `FloorManager`       | [FloorManager.tsx](../src/components/floor/FloorManager.tsx)                   | フロアのCRUD操作UI         |
+| `RoomManager`        | [RoomManager.tsx](../src/components/room/RoomManager.tsx)                      | 部屋のCRUD操作UI           |
+| `EquipmentManager`   | [EquipmentManager.tsx](../src/components/equipment/EquipmentManager.tsx)       | 設備のCRUD操作UI           |
+| `CategoryManager`    | [CategoryManager.tsx](../src/components/equipment/CategoryManager.tsx)         | カテゴリのCRUD操作UI       |
+| `ReservationManager` | [ReservationManager.tsx](../src/components/reservation/ReservationManager.tsx) | 予約のCRUD操作UI           |
+| `UserProfileManager` | [UserProfileManager.tsx](../src/components/user/UserProfileManager.tsx)        | プロフィール編集UI         |
 | `UserManager`        | [UserManager.tsx](../src/components/user/UserManager.tsx)                      | ユーザー管理UI（管理者用） |
 
 #### カレンダーコンポーネント
 
-| コンポーネント      | ファイル                                                                                                                                             | 機能                                       |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| コンポーネント      | ファイル                                                                  | 機能                                       |
+| ------------------- | ------------------------------------------------------------------------- | ------------------------------------------ |
 | `EquipmentCalendar` | [EquipmentCalendar.tsx](../src/components/calendar/EquipmentCalendar.tsx) | react-big-calendarを使用した予約カレンダー |
 
 #### ナビゲーション
 
-| コンポーネント | ファイル                                                                                                                        | 機能                                 |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| コンポーネント | ファイル                                             | 機能                                 |
+| -------------- | ---------------------------------------------------- | ------------------------------------ |
 | `Breadcrumbs`  | [Breadcrumbs.tsx](../src/components/Breadcrumbs.tsx) | パンくずリスト（階層ナビゲーション） |
 
 **特徴：**

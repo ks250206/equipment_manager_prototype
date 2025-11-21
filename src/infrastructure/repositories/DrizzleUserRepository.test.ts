@@ -89,7 +89,9 @@ describe("DrizzleUserRepository", () => {
         role: "GENERAL",
       };
 
-      (db.query.users.findFirst as ReturnType<typeof vi.fn>).mockResolvedValue(mockData);
+      (db.query.users.findFirst as ReturnType<typeof vi.fn>).mockResolvedValue(
+        mockData,
+      );
 
       const result = await repository.findById(TEST_USER_ID);
 
@@ -102,7 +104,9 @@ describe("DrizzleUserRepository", () => {
     });
 
     it("should return null when user not found", async () => {
-      (db.query.users.findFirst as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+      (db.query.users.findFirst as ReturnType<typeof vi.fn>).mockResolvedValue(
+        null,
+      );
 
       const result = await repository.findById(TEST_USER_ID);
 
@@ -140,7 +144,9 @@ describe("DrizzleUserRepository", () => {
         role: "GENERAL",
       };
 
-      (db.query.users.findFirst as ReturnType<typeof vi.fn>).mockResolvedValue(mockData);
+      (db.query.users.findFirst as ReturnType<typeof vi.fn>).mockResolvedValue(
+        mockData,
+      );
 
       const result = await repository.findByEmail(TEST_EMAIL);
 
@@ -152,7 +158,9 @@ describe("DrizzleUserRepository", () => {
     });
 
     it("should return null when user not found by email", async () => {
-      (db.query.users.findFirst as ReturnType<typeof vi.fn>).mockResolvedValue(null);
+      (db.query.users.findFirst as ReturnType<typeof vi.fn>).mockResolvedValue(
+        null,
+      );
 
       const result = await repository.findByEmail(TEST_EMAIL);
 
@@ -203,7 +211,9 @@ describe("DrizzleUserRepository", () => {
         },
       ];
 
-      (db.query.users.findMany as ReturnType<typeof vi.fn>).mockResolvedValue(mockData);
+      (db.query.users.findMany as ReturnType<typeof vi.fn>).mockResolvedValue(
+        mockData,
+      );
 
       const result = await repository.findAll();
 
@@ -216,7 +226,9 @@ describe("DrizzleUserRepository", () => {
     });
 
     it("should return empty array when no users exist", async () => {
-      (db.query.users.findMany as ReturnType<typeof vi.fn>).mockResolvedValue([]);
+      (db.query.users.findMany as ReturnType<typeof vi.fn>).mockResolvedValue(
+        [],
+      );
 
       const result = await repository.findAll();
 
@@ -386,7 +398,9 @@ describe("DrizzleUserRepository", () => {
         role: "ADMIN",
       };
 
-      (db.query.users.findFirst as ReturnType<typeof vi.fn>).mockResolvedValue(mockData);
+      (db.query.users.findFirst as ReturnType<typeof vi.fn>).mockResolvedValue(
+        mockData,
+      );
 
       const result = await repository.findById(TEST_USER_ID);
 

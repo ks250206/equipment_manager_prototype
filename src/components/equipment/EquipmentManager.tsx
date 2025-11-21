@@ -239,7 +239,12 @@ export default function EquipmentManager({
     } else {
       setCreateFormCategoryMinor("");
     }
-  }, [createFormCategoryMajor, createFormCategoryMinor, categories, getMinorsForMajor]);
+  }, [
+    createFormCategoryMajor,
+    createFormCategoryMinor,
+    categories,
+    getMinorsForMajor,
+  ]);
 
   useEffect(() => {
     if (editFormCategoryMajor) {
@@ -665,8 +670,8 @@ export default function EquipmentManager({
           <DialogHeader>
             <DialogTitle>Delete Equipment</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete &quot;{equipmentToDelete?.name}&quot;? This
-              action cannot be undone.
+              Are you sure you want to delete &quot;{equipmentToDelete?.name}
+              &quot;? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

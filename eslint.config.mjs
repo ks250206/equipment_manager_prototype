@@ -7,7 +7,18 @@ import nextPlugin from "@next/eslint-plugin-next";
 
 const eslintConfig = [
   {
-    ignores: [".next/**", "out/**", "build/**", "node_modules/**", "coverage/**", "*.config.js", "*.config.mjs", "*.config.ts", "drizzle/**", "vitest.setup.ts"],
+    ignores: [
+      ".next/**",
+      "out/**",
+      "build/**",
+      "node_modules/**",
+      "coverage/**",
+      "*.config.js",
+      "*.config.mjs",
+      "*.config.ts",
+      "drizzle/**",
+      "vitest.setup.ts",
+    ],
   },
   js.configs.recommended,
   ...typescriptEslint.configs.recommended,

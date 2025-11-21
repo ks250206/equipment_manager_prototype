@@ -35,7 +35,10 @@ const initialState = {
 
 export function UserProfileManager({ user }: UserProfileManagerProps) {
   const [state, formAction, isPending] = useActionState(
-    async (prevState: { success: boolean; error: string }, formData: FormData) => {
+    async (
+      prevState: { success: boolean; error: string },
+      formData: FormData,
+    ) => {
       const result = await updateUserProfileAction(formData);
       if (result.success) {
         return { success: true, error: "" };

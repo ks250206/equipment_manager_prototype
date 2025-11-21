@@ -139,7 +139,8 @@ export default function BuildingManager({ buildings, userRole }: Props) {
             {buildings.length === 0 && (
               <tr>
                 <td colSpan={3} className="px-4 py-8 text-center text-gray-500">
-                  No buildings found. Click &quot;Add Building&quot; to create one.
+                  No buildings found. Click &quot;Add Building&quot; to create
+                  one.
                 </td>
               </tr>
             )}
@@ -221,8 +222,8 @@ export default function BuildingManager({ buildings, userRole }: Props) {
           <DialogHeader>
             <DialogTitle>Delete Building</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete &quot;{buildingToDelete?.name}&quot;? This
-              action cannot be undone.
+              Are you sure you want to delete &quot;{buildingToDelete?.name}
+              &quot;? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>

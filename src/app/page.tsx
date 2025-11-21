@@ -34,8 +34,8 @@ export default function LandingPage() {
               Intuitive calendar reservations, detailed equipment management,
               and seamless experience.
               <br />
-              Eq Reservation takes your organization&apos;s equipment management to
-              the next level.
+              Eq Reservation takes your organization&apos;s equipment management
+              to the next level.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/login">
