@@ -1,0 +1,2 @@
+ALTER TABLE "equipment" ADD COLUMN IF NOT EXISTS "color" integer DEFAULT 0 NOT NULL;
+
